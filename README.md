@@ -9,9 +9,6 @@ studying Doppler-only drone trajectory reconstruction when the starting
 position is unknown and the Doppler estimates from different WiFi links have
 unequal reliability.
 
-This is a **data-and-results release**. Source code and environment files are
-not included in the public package.
-
 ## Keywords
 
 Passive WiFi sensing, bistatic Doppler, drone tracking, trajectory
