@@ -43,6 +43,13 @@ reconstruction, distributed sensing, low-altitude networks.
 The release contains four flight cases. Each case includes data from three
 surveillance links, denoted by `sur1`, `sur2`, and `sur3`.
 
+| Released case |
+|---|
+| `uav1` |
+| `uav2` |
+| `uav3` |
+| `uav4` |
+
 ```text
 data/
   cfar_input/
@@ -52,12 +59,14 @@ data/
   doppler_candidates/      cropped CFAR/DP outputs for the four cases
   processed/               readable per-window Doppler and RTK CSV files
   ground_truth/            RTK trajectories in NPZ and CSV formats
-  manifest.json            mapping from public cases to source recordings
+  manifest.json            public case metadata
 results/
   trajectories/            per-window EKF, EKF+RTS, JointOpt, and RTK positions
   figures/                 trajectory and error-CDF figures
   reproduced_summary.csv   numerical error summary
-Imgs/                      figures displayed on this page
+Imgs/
+  raw_doppler/             unprocessed time-Doppler spectrograms
+  recovered_doppler/       recovered Doppler-ridge figures
 ```
 
 The MAT files in `cfar_input` contain time-Doppler/CAF maps rather than raw
@@ -85,8 +94,41 @@ definitions.
    and interpolated at the processing-window centers. RTK data were used only
    for evaluation and plotting.
 
+### Unprocessed Time-Doppler Spectrograms
+
+These input time-Doppler maps are shown before clutter suppression, denoising,
+CFAR detection, and DP ridge recovery.
+
+#### UAV 1
+
 <p align="center">
-  <img src="Imgs/time_doppler_spectrogram.png" width="42%" alt="Time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav1_link1_raw_doppler.png" width="32%" alt="UAV 1 Link 1 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav1_link2_raw_doppler.png" width="32%" alt="UAV 1 Link 2 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav1_link3_raw_doppler.png" width="32%" alt="UAV 1 Link 3 unprocessed time-Doppler spectrogram">
+</p>
+
+#### UAV 2
+
+<p align="center">
+  <img src="Imgs/raw_doppler/uav2_link1_raw_doppler.png" width="32%" alt="UAV 2 Link 1 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav2_link2_raw_doppler.png" width="32%" alt="UAV 2 Link 2 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav2_link3_raw_doppler.png" width="32%" alt="UAV 2 Link 3 unprocessed time-Doppler spectrogram">
+</p>
+
+#### UAV 3
+
+<p align="center">
+  <img src="Imgs/raw_doppler/uav3_link1_raw_doppler.png" width="32%" alt="UAV 3 Link 1 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav3_link2_raw_doppler.png" width="32%" alt="UAV 3 Link 2 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav3_link3_raw_doppler.png" width="32%" alt="UAV 3 Link 3 unprocessed time-Doppler spectrogram">
+</p>
+
+#### UAV 4
+
+<p align="center">
+  <img src="Imgs/raw_doppler/uav4_link1_raw_doppler.png" width="32%" alt="UAV 4 Link 1 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav4_link2_raw_doppler.png" width="32%" alt="UAV 4 Link 2 unprocessed time-Doppler spectrogram">
+  <img src="Imgs/raw_doppler/uav4_link3_raw_doppler.png" width="32%" alt="UAV 4 Link 3 unprocessed time-Doppler spectrogram">
 </p>
 
 ### Recovered Doppler Ridges
@@ -98,33 +140,33 @@ each released case.
 #### UAV 1
 
 <p align="center">
-  <img src="Imgs/uav1_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 1 recovered Doppler ridge">
-  <img src="Imgs/uav1_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 2 recovered Doppler ridge">
-  <img src="Imgs/uav1_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 3 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav1_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 1 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav1_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 2 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav1_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 1 Link 3 recovered Doppler ridge">
 </p>
 
 #### UAV 2
 
 <p align="center">
-  <img src="Imgs/uav2_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 1 recovered Doppler ridge">
-  <img src="Imgs/uav2_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 2 recovered Doppler ridge">
-  <img src="Imgs/uav2_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 3 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav2_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 1 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav2_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 2 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav2_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 2 Link 3 recovered Doppler ridge">
 </p>
 
 #### UAV 3
 
 <p align="center">
-  <img src="Imgs/uav3_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 1 recovered Doppler ridge">
-  <img src="Imgs/uav3_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 2 recovered Doppler ridge">
-  <img src="Imgs/uav3_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 3 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav3_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 1 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav3_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 2 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav3_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 3 Link 3 recovered Doppler ridge">
 </p>
 
 #### UAV 4
 
 <p align="center">
-  <img src="Imgs/uav4_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 1 recovered Doppler ridge">
-  <img src="Imgs/uav4_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 2 recovered Doppler ridge">
-  <img src="Imgs/uav4_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 3 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav4_link1_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 1 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav4_link2_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 2 recovered Doppler ridge">
+  <img src="Imgs/recovered_doppler/uav4_link3_recovered_doppler_ridge.png" width="32%" alt="UAV 4 Link 3 recovered Doppler ridge">
 </p>
 
 ## Results
@@ -167,9 +209,12 @@ approximately 0.84 m.
   trajectories point by point.
 - Use `results/reproduced_summary.csv` for the reported aggregate errors.
 
+## License
+
+A public data license has not yet been specified. Please add the intended
+license before publishing the repository.
 
 ## Contact
 
 For questions about the dataset, please contact Xianger Li at
 `lixe2025@mail.sustech.edu.cn`.
-

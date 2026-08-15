@@ -1,0 +1,26 @@
+{
+  "cases": {
+    "uav1": {
+      "label": "UAV 1",
+      "release_stem": "uav1"
+    },
+    "uav2": {
+      "label": "UAV 2",
+      "release_stem": "uav2"
+    },
+    "uav3": {
+      "label": "UAV 3",
+      "release_stem": "uav3"
+    },
+    "uav4": {
+      "label": "UAV 4",
+      "release_stem": "uav4"
+    }
+  },
+  "notes": {
+    "doppler_candidates": "Released DP outputs extracted after full-context processing.",
+    "doppler_candidates_full": "Full-context DP outputs associated with each public case.",
+    "segments": "Released time-Doppler inputs with case-relative timestamps.",
+    "ground_truth": "RTK positions interpolated at the processing-window centers on the case-relative time axis."
+  }
+}
