@@ -43,13 +43,6 @@ reconstruction, distributed sensing, low-altitude networks.
 The release contains four flight cases. Each case includes data from three
 surveillance links, denoted by `sur1`, `sur2`, and `sur3`.
 
-| Released case |
-|---|
-| `uav1` |
-| `uav2` |
-| `uav3` |
-| `uav4` |
-
 ```text
 data/
   cfar_input/
@@ -174,10 +167,6 @@ approximately 0.84 m.
   trajectories point by point.
 - Use `results/reproduced_summary.csv` for the reported aggregate errors.
 
-## License
-
-A public data license has not yet been specified. Please add the intended
-license before publishing the repository.
 
 ## Contact
 
