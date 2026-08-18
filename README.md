@@ -189,7 +189,7 @@ per-window trajectories and errors are available under `results/trajectories`.
 | UAV 4 | JointOpt | 0.957 | 1.049 |
 
 The mean JointOpt error over the two manuscript cases, UAV 1 and UAV 2, is
-approximately 0.83 m.
+approximately 0.826 m.
 
 <p align="center">
   <img src="results/figures/uav1_trajectory.png" width="42%" alt="UAV 1 trajectory">
