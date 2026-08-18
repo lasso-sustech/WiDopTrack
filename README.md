@@ -22,7 +22,7 @@ reconstruction, distributed sensing, low-altitude networks.
   one directional antenna for the reference channel and one for the
   surveillance channel.
 - **Target:** DJI M400 drone.
-- **Sampling rate:** 1 MS/s.
+- **Sampling rate:** 1 MSa/s.
 - **Processing-window duration:** 0.4 s.
 - **Interval between adjacent processing-window centers:** 0.04 s.
 - **Doppler grid:** 37 bins from -45 Hz to 45 Hz.
@@ -175,12 +175,12 @@ per-window trajectories and errors are available under `results/trajectories`.
 
 | Case | Method | Mean error (m) | RMSE (m) |
 |---|---|---:|---:|
-| UAV 1 | EKF | 2.057 | 2.466 |
-| UAV 1 | EKF+RTS | 1.685 | 2.041 |
-| UAV 1 | JointOpt | 0.952 | 0.979 |
-| UAV 2 | EKF | 2.266 | 2.652 |
-| UAV 2 | EKF+RTS | 2.140 | 2.421 |
-| UAV 2 | JointOpt | 0.722 | 0.766 |
+| UAV 1 | EKF | 1.994 | 2.334 |
+| UAV 1 | EKF+RTS | 1.596 | 1.902 |
+| UAV 1 | JointOpt | 0.913 | 0.945 |
+| UAV 2 | EKF | 2.338 | 2.741 |
+| UAV 2 | EKF+RTS | 2.098 | 2.390|
+| UAV 2 | JointOpt | 0.739 | 0.782 |
 | UAV 3 | EKF | 1.500 | 1.663 |
 | UAV 3 | EKF+RTS | 1.461 | 1.634 |
 | UAV 3 | JointOpt | 0.691 | 0.785 |
@@ -189,7 +189,7 @@ per-window trajectories and errors are available under `results/trajectories`.
 | UAV 4 | JointOpt | 0.957 | 1.049 |
 
 The mean JointOpt error over the two manuscript cases, UAV 1 and UAV 2, is
-approximately 0.84 m.
+approximately 0.83 m.
 
 <p align="center">
   <img src="results/figures/uav1_trajectory.png" width="42%" alt="UAV 1 trajectory">
