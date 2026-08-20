@@ -83,12 +83,17 @@ definitions.
 3. Each Doppler bin was normalized using percentile-background subtraction and
    a MAD-based robust scale. Clutter suppression and denoising were then applied.
 4. CFAR produced Doppler candidates, and second-order dynamic programming
-   recovered a continuous Doppler ridge. A post-DP quality check generated the
-   retained-point indicator for every link and processing window.
-5. The retained Doppler estimates were used by the EKF and RTS smoother to
-   construct a coarse trajectory. Reliability-weighted control-point
-   optimization and moving-average post-processing produced the final JointOpt
-   trajectory.
+   recovered a continuous Doppler ridge. For the recovered estimate
+   $\widetilde{f}_{k,l}^{\mathrm D}$, the relative response is
+   $\rho_{k,l}=A_l(k,\widetilde{f}_{k,l}^{\mathrm D})/
+   \max_{f_i\in\mathcal F}A_l(k,f_i)$. The validity indicator is
+   $\delta_{k,l}=0$ when $\rho_{k,l}<\rho_{\min}$ and
+   $\delta_{k,l}=1$ otherwise.
+5. At processing window $k$, the EKF measurement set contains the links in
+   $\Omega_k=\{l:\delta_{k,l}=1\}$. The resulting EKF sequence is processed by
+   the RTS smoother to construct the coarse trajectory. Reliability-weighted
+   control-point optimization and moving-average post-processing then produce
+   the final JointOpt trajectory.
 6. RTK positions were transformed to the experiment's local Cartesian frame
    and interpolated at the processing-window centers. RTK data were used only
    for evaluation and plotting.
@@ -132,9 +137,9 @@ CFAR detection, and DP ridge recovery.
 
 ### Recovered Doppler Ridges
 
-The figures below show the continuous DP ridge, the ridge points retained by
-the post-DP quality check, and the RTK-derived Doppler for all three links in
-each released case.
+The figures below show the continuous DP ridge, the ridge points satisfying
+$\delta_{k,l}=1$ under the relative-response test, and the RTK-derived Doppler
+for all three links in each released case.
 
 #### UAV 1
 
@@ -199,8 +204,8 @@ approximately 0.826 m.
 ## How to Use the Dataset
 
 - Start with `data/processed/uav*_window_data.csv` for a readable table of the
-  continuous DP estimates, post-DP retention indicators, retained Doppler
-  observations, and RTK positions.
+  continuous DP estimates, the relative-response validity indicators
+  $\delta_{k,l}$, valid Doppler observations, and RTK positions.
 - Use `data/cfar_input/segments` to inspect the released time-Doppler maps.
 - Use `data/cfar_input/full_recordings` when the surrounding temporal context
   is required to analyze normalization, denoising, CFAR, or DP boundary effects.

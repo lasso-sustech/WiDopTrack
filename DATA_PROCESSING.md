@@ -64,10 +64,22 @@ a continuous ridge. The path score rewards strong local responses and penalizes
 large first- and second-order Doppler changes. This produces one continuous
 estimate `main_track_doppler_hz` for every processing window.
 
-Post-DP quality screening checks the ridge response, track score, prominence,
-peak ratio, and minimum run length. Its output is
-`main_track_valid_mask`. The corresponding retained observation is stored in
-`main_track_doppler_hz_masked`; non-retained samples are represented by NaN.
+For the DP-recovered estimate $\widetilde{f}_{k,l}^{\mathrm D}$, define its
+relative response as
+
+$$
+\rho_{k,l}=
+\frac{A_l\!\left(k,\widetilde{f}_{k,l}^{\mathrm D}\right)}
+{\max_{f_i\in\mathcal F}A_l(k,f_i)}.
+$$
+
+The recovered Doppler frequency is regarded as a false alarm and assigned
+$\delta_{k,l}=0$ when $\rho_{k,l}<\rho_{\min}$; otherwise,
+$\delta_{k,l}=1$. The released experiments use $\rho_{\min}=0.5$. Thus,
+$\delta_{k,l}$ is determined only by this relative-response test. The field
+`main_track_valid_mask` stores $\delta_{k,l}$. The corresponding valid Doppler
+observation is stored in `main_track_doppler_hz_masked`; samples with
+$\delta_{k,l}=0$ are represented by NaN.
 
 The full-context DP outputs are stored under `doppler_candidates_full`. The
 released candidate files were extracted only after processing their full
@@ -98,10 +110,19 @@ reconstructed trajectory.
 
 ## 7. Coarse trajectory reconstruction
 
-For each processing window, the EKF measurement set contains only links whose
-post-DP retention indicator equals one. If all three links are absent, the EKF
-performs prediction without a measurement update. Candidate initial states are
-evaluated, and the retained coarse sequence is processed by an RTS smoother.
+For processing window $k$, define the valid-link set as
+
+$$
+\Omega_k=\{l:\delta_{k,l}=1\}.
+$$
+
+The EKF observation vector, observation function, Jacobian matrix, and
+measurement-noise covariance contain only the links in $\Omega_k$. If
+$\Omega_k$ contains one, two, or three links, the available links jointly
+perform the measurement update. If $\Omega_k$ is empty, the measurement update
+is skipped and the predicted state and covariance are retained. Candidate
+initial states are evaluated, and the selected coarse sequence is processed by
+an RTS smoother.
 
 The measurement-noise standard deviation is 5 Hz for all three links. The EKF
 and EKF+RTS position sequences in the result CSV files are the two coarse-stage
@@ -112,9 +133,11 @@ baselines reported in the result table.
 For a retained observation at window `k` and link `l`, the trajectory-level
 weight is the product of:
 
-- a link factor determined by the post-DP retention ratio and the mean absolute
-  Doppler residual relative to the coarse trajectory;
-- a local ridge-support factor computed over seven processing windows; and
+- a link factor determined by the valid-Doppler ratio
+  $K^{-1}\sum_k\delta_{k,l}$ and the mean absolute Doppler residual over samples
+  with $\delta_{k,l}=1$;
+- a local ridge-support factor computed from $\delta_{k,l}$ over seven
+  processing windows; and
 - a Cauchy attenuation factor with a 20-Hz residual scale.
 
 Control points sampled from the coarse trajectory are jointly optimized using
